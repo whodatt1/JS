@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Middle Check</title>
+    <script>
+        //function(parameters)와 arguments의 명칭 사용
+        function testFunc(paramA, paramB, paramC) {
+        return `${paramA}, ${paramB}, ${paramC}`;
+        }
+        let argA = 'A';
+        let argB = 'B';
+        let argC = 'C';
+        testStr = testFunc(argA, argB, argC);
+        console.log(testStr);
+
+        console.log('----------------------------')
+
+        let place = '부천cgv';
+        let time = 8;
+        let timeforpay = 10000;
+        let total = time*timeforpay;
+        function paycheck(place, time, timeforpay) {
+            let total = time * timeforpay;
+            return `${place}에서 근무한 시간은 총 ${time}시간이며 총 받을 Pay는 ${total} 입니다.`;
+        }
+        let userName = '김황균';
+        let userHeight = 1.84;
+        let userWeight = 74;
+        function BMI(userName, userHeight, userWeight) {
+            return `${userName}님의 BMI는 ${userWeight/(userHeight**2)} 입니다.`;
+        }
+        function gm(ad, ap, jg) {
+            return `${ad}은 ${ap}에게 초반에 주도권이 없다. ${jg}을 불러라`
+        }
+    </script>
+</head>
+<body>
+    <h1>자바스크립트 Middle Check : 개발자 콘솔(F12)을 확인하세요</h1>
+    <h3>1. 아르바이트 급여 계산</h3>
+    <ol>
+        <li>아르바이트 장소 : 입력?</li>
+        <li>근무시간 : 입력?</li>
+        <li>시간당Pay : 입력?</li>
+        <li>출력문 > ${아르바이트 장소}에서 근무한 시간은 총 ${근무시간}이며 총 받을 Pay는 ${얼마} 입니다.</li>
+        <li>템플레이트를 활용하여 출력하며, 함수의 리턴을 사용할 것</li>
+    </ol>
+    <h3>2. BMI 지수 계산기</h3>
+    <ol>
+        <li>사용자이름, 키, 몸무게 입력</li>
+        <li>출력문은 템플레이트 활용, 함수 리턴 사용할 것</li>
+    </ol>
+    <script>
+        console.log(paycheck(place, time, timeforpay, total));
+        console.log(BMI(userName, userHeight, userWeight));
+        console.log(gm('카사딘','루시안','정글'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연산자</title>
+</head>
+<body>
+    <h1>자바스크립트 연산자 : 개발자 콘솔(F12)을 확인하세요</h1>
+    <ul>
+        <li>
+            산술 연산자 : 사칙연산, 나머지연산, 제곱, 루트, 등등..
+        </li>
+        <li>
+            대입 연산자 : 자체 값을 연산 후 다시 대입, 재귀적 연산이라고도 함
+        </li>
+        <li>
+            비교 연산자 : 이상, 이하, 미만, 초과, 같다, 다르다 등등...
+        </li>
+        <li>
+            논리 연산자 : and, or, not and, not or
+        </li>
+        <li>
+            증감 연산자 : 미리 정해진 일정 크기를 증가 / 감소
+        </li>
+        <li>
+            비트 연산자 : 비트 단위로 연산 (웹 분야에서는 활용빈도가 매우 낮음)
+        </li>
+        <li>
+            그외 연산자는 추후에...
+        </li>
+    </ul>
+    <script>
+        // 사칙연산, 나머지연산
+        let num1 = 100;
+        let num2 = 5;
+        let resultAdd = num1 + num2;
+        console.log('resultAdd :', resultAdd);
+        let resultSubs = num1 - num2;
+        console.log('resultSubs :', resultSubs);
+        let resultMulti = num1 * num2;
+        console.log('resultMulti :', resultMulti);
+        let resultDiv = num1 / num2;
+        console.log('resultDiv :', resultDiv);
+        let resultMod = num1 % num2;
+        console.log('resultMod :', resultMod);
+
+        console.log(2 ** 3); // 8
+
+        // 대입연산자 : (=) 도 대입 연산자다
+        num1 = num1 + num2;
+        console.log(num1); // 105
+        num1 = num1 + num2;
+        console.log(num1); // 110
+        num1 += num2;
+        console.log(num1); // 115
+
+        num1 -= num2;
+        console.log(num1); // 110
+        num1 -= num2;
+        console.log(num1); // 105
+
+        num1 *= num2;
+        console.log(num1); // 525
+        num1 = num1 * num2;
+        console.log(num1); //2625
+
+        num1 /= num2;
+        console.log(num1); // 525
+
+        num1 **= num2;
+        console.log(num1);
+        
+        // console.log(Math.sqrt(100));
+        
+        // 증감 연산자
+        num1 = 100;
+        num1++;
+        console.log(num1); //101
+        num1--;
+        console.log(num1); //100
+
+        ++num1;
+        console.log(num1); // 101
+        --num1;
+        console.log(num1); // 100
+ 
+        // 비교 연산자 : 연산 결과는 무조건 boolean type
+        console.log(num1 > num2); //true
+        console.log(num1 < num2); //false
+        console.log(num1 >= num2); //true
+        console.log(num1 <= num2); //false
+
+        num1 = 100;
+        num2 = 100;
+        let num3 = '100';
+
+        console.log(num1 === num2); // true : 값과 타입을 동시에 비교
+        console.log(num1 == num3); // ture : 값만 비교
+        console.log(num1 === num3); // false : 숫자와 문자의 타입을 비교하게 됨
+
+        // 다른값? 다른값? 및 타입?
+        console.log(num1 !== num2); // false : 값과 타입을 동시에 비교
+        console.log(num1 != num3);  // false : 값만 비교
+        console.log(num1 !== num3); // true : 숫자와 문자의 타입을 비교하게 됨
+
+        // 논리 연산자 : && (and 연산자), || (or 연산자) > true나 false 리턴
+        // && 연산자는 양쪽이 모두 true 일 때만 true를 리턴
+        console.log(true && true); //true
+        console.log(true && false); //false > 왼쪽이 true이면 오른쪽 값을 리턴
+        console.log(false && true); // false > 왼쪽이 false이면 왼쪽값을 리턴
+        console.log(false && false); //false > 왼쪽이 false이면 그대로 리턴
+        console.log(num1 == num2 && (num1 === num3 && num2 === num3));
+        
+        // || 연산자는 양 쪽 중 한개라도 true이면 모두 true를 리턴
+        console.log(true || true); // true
+        console.log(true || false); // true
+        console.log(false || true); // true 
+        console.log(false || false); // false
+        // ex
+        console.log(num1 == num2 || (num1 === num3 || num2 === num3));
+
+        // ! 연산자 : not 연산자(부정 연산자) > 결과를 반대로 리턴
+        console.log(!true); // false;
+        console.log(!false); // true;
+        console.log(!!!false); //true;
+        //ex
+        console.log(!(num1 == num2 || !(num1 === num3)))
+
+        // middle Check
+        // 1. 삼각형의 너비와 사각형의 둘레길이를 구하기
+        // - 알맞는 변수이름을 사용하고 변수 초기값은 100 이하의 수를 사용
+        // 2. 
+        let triangleHeight = 60;
+        let triangleBottomLine = 40;
+        let triangleArea = (triangleHeight * triangleBottomLine)/2;
+        console.log('triangleArea :', triangleArea);
+
+        let squareTop = 30;
+        let squareRight = 50;
+        let squareBottom = 40;
+        let squareLeft = 25;
+        let squarePerimeter = squareTop + squareBottom + squareRight + squareLeft;
+        console.log('squarePerimeter :', squarePerimeter);
+
+        // 2. 함수를 활용한 1번의 문제 풀이
+        function getTriangleArea(bottomWidth, height) {
+            let triangleArea = (bottomWidth * height) /2;
+            console.log(triangleArea);
+        }
+        function getPerimeter(squareTop, squareBottom, squareRight, squareLeft) {
+            // let squarePerimeter = squareTop + squareBottom + squareRight + squareLeft;
+            // console.log(squarePerimeter);
+            console.log(squareTop + squareBottom + squareRight + squareLeft);
+        }
+        getTriangleArea(100, 34);
+        getPerimeter(40, 30, 40, 39);
+
+        // 3. 원금, 이자율, 저축한 기간(year기준)을 전달하면
+        // 최종 받을 금액을 출력해주는 함수를 만들어보세요
+        // 최종 받을 금액은 15.4%의 이자소득세를 차감한 금액입니다.
+
+        function howMuchGetMoney(money, rate, years) {
+            let totalGet = money * (rate / 100) * years * (1-(15.4/100)) + money;
+            console.log(totalGet);
+        }
+        function howMuchGetMoney2(money, rate, years) {
+            let totalGet = money * ((1 + (rate/100)/ years) ** (years*5));
+            console.log(totalGet);
+        }
+        let money = 100000000;
+        let rate = 3;
+        let years = 5;
+        howMuchGetMoney(money , rate, years);
+        howMuchGetMoney2(money , rate, years);
+    </script>
+</body>
+</html>
