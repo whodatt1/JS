@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type Converting</title>
+</head>
+<body>
+    <h1>자바 스크립트 형 변환: F12</h1>
+    <script>
+        let str = '100'; //string > String()
+        let num = 10; //number > Number()
+        let bool = false; //boolean > Boolean()
+        let func = function() { // function > x
+            return 1
+        }
+        let obj = {k:'val1', k2: 12}; // object > x
+        let undi; // undefined > x
+
+        // 자동 형변환
+            let rs1 = str + num;
+            let rs2 = str / num;
+            if (1) {
+                console.log('print', 1)
+            }
+        // 강제 형변환
+            let re3 = Boolean(1); // convert to true
+            let re4 = Number(false); // convert to 0
+            let rs5 = String(true); // "true"
+            let rs6 = parseInt("1212");
+    </script>
+</body>
+</html>
