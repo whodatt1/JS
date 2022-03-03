@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문까지 복습하기 문제</title>
+</head>
+<body>
+    <h1>1. 아래의 조건을 참고 및 분석하여 코드를 작성 (필수)</h1>
+    <ul>
+        <li>양의 정수 2개를 입력 받기</li>
+        <li>1: 덧셈 / 2: 뺄셈 / 3: 곱셈 / 4: 나눗셈 / 5: 나머지 > 메뉴</li>
+        <li>계산 과정 및 결과 출력 > ex) 3 + 5 = 8</li>
+        
+        <input type="number" id="firstNum"><br>
+        <input type="number" id="secondNum"><br>
+        <input type="text" id="operator"><br>
+        <button type="button" id="btn2">계산 결과</button>
+    </ul>
+    <script>
+        document.getElementById('btn').addEventListener('click', function() {
+            let firstNum = parseInt(document.getElementById('firstNum').value);
+            let secondNum = parseInt(document.getElementById('secondNum').value);
+            let operator = document.getElementById('operator').value;
+
+            
+            switch(operator) {
+                case '+':
+                    console.log(`${firstNum} + ${secondNum} = ${firstNum+secondNum}`);
+                    break;
+                case '-':
+                    console.log(`${firstNum} - ${secondNum} = ${firstNum-secondNum}`);
+                    break;
+                case '*':
+                    console.log(`${firstNum} * ${secondNum} = ${firstNum*secondNum}`);
+                    break;
+                case '/':
+                    console.log(`${firstNum} / ${secondNum} = ${(firstNum/secondNum).toFixed(2)}`); 
+                    break;
+                case '%':
+                    console.log(`${firstNum} % ${secondNum} = ${firstNum%secondNum}`);
+                    break;
+            }
+        });
+
+
+        function addition(num1, num2) {
+            return `${firstNum} + ${secondNum} = ${firstNum+secondNum}`
+        }
+        function subtraction(num1, num2) {
+            return `${firstNum} - ${secondNum} = ${firstNum-secondNum}`
+        }
+        function multiple(num1, num2) {
+            return `${firstNum} * ${secondNum} = ${firstNum*secondNum}`
+        }
+        function divide(num1, num2) {
+            return `${firstNum} / ${secondNum} = ${(firstNum/secondNum).toFixed(2)}`
+        }
+        function modulus(num1, num2) {
+            return `${firstNum} % ${secondNum} = ${firstNum%secondNum}`
+        }
+        function menuSelect(num1, operator, num2) {
+            switch(operator) {
+                    case '+':
+                        result = addition(num1, num2);
+                        break;
+                    case '-':
+                        result = subtraction(num1, num2);
+                        break;
+                    case '*':
+                        result = multiple(num1, num2);
+                        break;
+                    case '/':
+                        result = divide(num1, num2);
+                        break;
+                    case '%':
+                        result = modulus(num1, num2);
+                        break;
+            }
+            return result;
+        }
+
+
+
+        console.log(result);
+        document.getElementById('btn').addEventListener('click', function() {
+            let firstNum = parseInt(document.getElementById('firstNum').value);
+            let secondNum = parseInt(document.getElementById('secondNum').value);
+            let operator = document.getElementById('operator').value;
+        
+            console.log(menuSelect(num1, operator, num2));
+        
+        
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>호칭 정리</title>
+</head>
+<body>
+<h1>한국인의 호칭</h1>
+나의 성별: <input type="text" id="myGen"> 
+나의 나이: <input type="number" id="myAge"><br>
+상대방의 성별:<input type="text" id="uGen"> 
+상대방의 나이:<input type="number" id="uAge"><br>
+<button type="button" id="btn">호칭 확인</button>
+<script>
+    document.getElementById('btn').addEventListener('click', function () {
+       let myGen = document.getElementById('myGen').value;
+       let myAge = parseInt(document.getElementById('myAge').value);
+       let uGen = document.getElementById('uGen').value;
+       let uAge = parseInt(document.getElementById('uAge').value);
+       // 친구, 남동생, 여동생, 형, 누나, 오빠, 언니 호칭 판단하기
+       if (myAge < uAge) {
+            if (myGen === "남자") {
+                    if (uGen === "여자") {
+                        console.log('누나');
+                    } else {
+                        console.log('형');
+                    }
+                } else {
+                    if (uGen === "여자") {
+                        console.log('언니');
+                    } else {
+                        console.log('오빠');
+                    }
+                }
+            } else if (myAge > uAge) {
+                if (myGen === "남자" || uGen === "여자") {
+                    if (uGen === "여자") {
+                        console.log('여동생');
+                    } else {
+                        console.log('남동생');
+                    }
+                }
+            } else {
+                if (myGen === "남자" || uGen === "여자") {
+                    console.log('친구');
+                } else {
+                    console.log('친구');
+                }
+            }
+
+            // function whatShouldICallYou(mg, yg, ma, ua) {
+            //     if (ma == ua) {
+            //         return '친구';
+            //     } else if (ma > ua) {
+            //         return ug == 'm' ? '남동생이라고 불러' : '여동생이라고 불러'
+            //     } else {
+            //         //상대방이 나이가 더 많은 상황
+            //         if (ma == 'm') {
+            //             return ug =='m' ? '형이라 불러' : '누나라고 불러'
+            //         } else {
+            //             return ug == 'm' ? '오빠라고 불러' : '언니라고 불러'
+            //         }
+            //     }
+            // }
+            // console.log(whatShouldICallYou(myGen, uGen, myAge, uAge));
+     });
+</script>
+</body>
+</html>
