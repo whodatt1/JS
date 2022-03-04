@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>중첩 반복문</title>
+</head>
+<body>
+    <h1>자바 스크립트 중첩 반복문 : F12</h1>
+    <ul>
+        <li>반복문 안에 또 반복문을 사용하는 방식</li>
+        <li>원리는 바깥쪽 반복문이 1번 수행 될 때 안쪽 반복문은 처음부터 끝까지 수행</li>
+        <li>구구단을 생각하면 2, 3, 4, ... 9 단을 출력하는건 바깥쪽 반복문</li>
+        <li>각 단에 2~9까지 곱하는 건 안쪽 반복문</li>
+    </ul>
+    <h3>구구단을 출력해 봅시다! 2~9 단 까지</h3>
+    <pre>
+        2 x 2 = 4 , 3 x 2 = 6 .......... 9 x 2 = 18
+        ...........................................
+        ...........................................
+        ...........................................
+        ...........................................
+        ...........................................
+        2 x 9 = 18 .........................9 x 9 = 81
+    </pre>
+    <script>
+
+        // for (let i = 1; i <= 9; i++) {
+        //     for (let j = 2; j <= 9; j++) {
+        //             console.log(`${j} * ${i} = ${j*i}`);
+        //     }
+        // }
+        // 구구단 포맷팅
+        for (let i = 1; i < 10; i++) {
+            t = '';
+            for (let j = 2; j < 10; j++){
+                t+= `${j} x ${i} = ${j * i} \t`
+            }
+            console.log(t);
+        }
+    </script>
+    <h3>문자데이터를 분석하여 단어 조합하여 새로 생성하기</h3>
+    <ul>
+        <li>특정 문자열 뒤 혹은 앞에 문자를 추가하여 새로운 문자데이터를 만드는 방식</li>
+        <li>마케팅이나 광고관련 프로그램에서 많이 사용하며</li>
+        <li>데이터 분석 분야에서 데이터를 원하는 형식으로 전처리 할 때도 많이 사용함</li>
+    </ul>
+    <script>
+        // Quiz
+        // 중첩 반복문으로 12간지 만들기
+        let ten = '갑,을,병,정,무,기,경,신,임,계';
+        let twelve = '자,축,인,묘,진,사,오,미,신,유,술,해';
+       
+        for (let i = 0; i < ten.length; i+=2) {
+            let t = '';
+            for (let j = 0; j < twelve.length; j+=2) {
+                t += `${ten.charAt(i) + twelve.charAt(j)}${j < twelve.length-1 ? ', ' : ''}`;
+            }
+            console.log(t);
+        }
+
+
+
+
+        // Quiz. ( 주말과제 1 ) - substring이나 slice 메서드 활용
+        // strData 개발자라는 단어뒤에 '-백엔드'를 추가
+        // 관리자라는 단어 뒤에 '-고생하세요'를 추가
+        // 위의 조건에 맞는 새로운 newData라는 변수에 저장해보기
+        let strData = '자바개발자, 웹개발자, 앱개발자, 시스템관리자, 서버관리자'
+        console.log(strData[5-1])
+        console.log(strData.slice(0, 5).endsWith('개발자'))
+        let back = '-백엔드';
+        let ment = '-고생하세요';
+        let total = '';
+        for (let i = 1; i < strData.length; i++) {
+            if (strData.slice(0, i).endsWith('개발자')) {
+                
+            } else if ()
+            
+        }
+        console.log(total)
+    </script>
+</body>
+</html>

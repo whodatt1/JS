@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반복문 while</title>
+</head>
+<body>
+    <h1>자바스크립트 반복문 while(boolean): F12</h1>
+    <ul>
+        <li>while의 구조는 시작값, 반복유지 조건, 실행영역으로 구성되어있다</li>
+        <li>반복유지 조건은 if문의 조건과 같은 boolean 타입으로 구성</li>
+        <li>while은 주로 반복의 횟수를 정확하게 정하지 못하거나 정할 필요가 없을 때 사용함</li>
+        <li>do while과의 차이는 while은 조건부 실행, do while은 선실행 후 조건부합 검사</li>
+        <li>조건이 true일때 계속 반복, false이면 반복을 멈춤(실행영역을 벗어남)</li>
+    </ul>
+    <input type="number" id="num"><br>
+    <button type="button" id="btn">단 출력</button>
+    <script>
+        let i = 0;
+        // print 1 to 10
+        while(i < 11){
+            console.log(i++);
+        } // 현재의 반복형태는 for 문을 사용하는 것이 더 바람직함
+
+        let j = 0;
+        // print 1 to 10
+        while(j < 10) {
+            console.log(++j);
+        } // 현재의 반복형태는 for 문을 사용하는 것이 더 바람직함
+
+        let flag = true;
+        let sum = 0;
+        let num = 1;
+        while(flag) {
+            console.log(num);
+            sum += num;
+            num++;
+            if(sum >= 1000) {
+                flag = false;
+            }
+        }
+        console.log(sum);
+        console.log('---------------------');
+
+        do {
+            // 선 실행 후 조건 검사
+            sum += num;
+            if(sum > 2000) {
+                flag = false;
+            }
+            console.log(num, '>', sum);
+            num++;
+
+        } while(flag);
+
+
+        // 숫자를 입력하면 그 숫자의 2 ~ 9 까지 곱한 결과를 출력해보기
+        
+        
+        document.getElementById('btn').addEventListener('click', function () {
+            let num = parseInt(document.getElementById('num').value);
+
+            
+            let i = 0;
+            while (i < 10) {
+                i++;
+                console.log(`${num} * ${i} = ${num * i}`);
+            }
+        });
+    </script>
+</body>
+</html>

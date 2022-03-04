@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For 문 연습</title>
+</head>
+<body>
+    <h1>자바스크립트 For 문 연습</h1>
+    <ul>
+        <li>1. 정수 n을 입력 받으면 n의 높이 만큼 직각삼각형을 *로 만들어보기</li>
+        <li>2. 컴퓨터와 가위바위보 게임을 10번 진행시켜 본인의 승률을 출력해보세요</li>
+        <li>승리의 수 / (전체 게임수)</li>
+        <li>3. 로또 1등에 당첨될 확률은 얼마나 될까요?
+            <ul>
+                <li>1~ 45의 숫자중 6개의 번호가 일치해야 합니다.</li>
+                <li>1개의 숫자가 일치할 확률은?</li>
+                <li>1개의 숫자가 일치 한 후 2번째 숫자가 일치할 확률은?</li>
+                <li>6개의 개별 숫자는 중복되지 않으므로 숫자의 확률은 진행이 될 수록 높아지지만</li>
+                <li>6개의 숫자 모두 일치할 확률은 각 숫자의 일치 확률을 모두 곱하면 된다.</li>
+            </ul>
+        </li>
+    </ul>
+    <pre>
+    5 입력했을시
+    * 
+    **
+    ***
+    ****
+    ***** 이렇게 나오게끔-->
+    </pre>
+    직각삼각형 만들기 : <input type="number" id="n"><br>
+    <button type="button" id="btn">WE MADE IT!</button><br>
+    가위바위보 게임 : <input type="text" id="rsp"><br>
+    <button type="button" id="btn2">LET'S GOOO</button>
+    <script>
+        let win = 0;
+        let lose = 0;
+        let draw = 0;
+
+
+        for (let i = 0; i < 10; i++) {
+            let myChoice = Math.floor(Math.random()*3);
+            let comChoice = Math.floor(Math.random()*3);
+
+            switch (myChoice) {
+                case 0 :
+                    comChoice==0 ? draw++ : comChoice==1 ? lose++ : win++;
+                    break;
+                case 1 :
+                    comChoice==1 ? draw++ : comChoice==2 ? lose++ : win++;
+                    break;
+                case 2 :
+                    comChoice==2 ? draw++ : comChoice==3 ? lose++ : win++;
+                    break;
+                default:
+                    break;
+            }
+        }
+        console.log(`당신의 승률은 ${((win / (10-draw)) * 100).toPrecision(3)} %`)
+
+
+
+
+        document.getElementById('btn').addEventListener('click', function() {
+            let n = document.getElementById('n').value;
+            let tri = '*';
+            let sum = "";
+
+            for (let i = 1; i <= n; i++) {
+                sum += tri;
+                console.log(sum);
+            }
+        });
+
+        document.getElementById('btn2').addEventListener('click', function() {
+            
+            
+            function toText(text) {
+                if (text === 1) {
+                    return '가위';
+                } else if (text === 2) {
+                    return '바위';
+                } else {
+                    return '보';
+                }
+            }
+            function toText2(text) {
+                if (text === 1) {
+                    return '가위';
+                } else if (text === 2) {
+                    return '바위';
+                } else {
+                    return '보';
+                }
+            }
+                
+                let win = 0;
+                let totalGame = 0;
+                let draw = 0;
+                let lose = 0;
+
+                for (let i = 0; i < 10; i++) {
+                    let rsp = Math.floor(Math.random()*3)+1;
+                    let comChoice = Math.floor(Math.random()*3)+1;
+                        
+                        
+                        if (toText2(rsp) === '가위') {
+                            if (toText(comChoice) === '가위') {
+                                console.log(`나 : ${toText2(rsp)} \n 컴퓨터 : ${toText(comChoice)} \n 결과 : 비겼습니다.`);
+                                totalGame++;
+                            } else if (toText(comChoice) === '바위') {
+                                console.log(`나 : ${toText2(rsp)} \n 컴퓨터 : ${toText(comChoice)} \n 결과 : 졌습니다.`);
+                                totalGame++;
+                            } else {
+                                console.log(`나 : ${toText2(rsp)} \n 컴퓨터 : ${toText(comChoice)} \n 결과 : 이겼습니다.`);
+                                totalGame++;
+                                win++;
+                            }
+                        } else if(toText2(rsp) === '바위') {
+                            if (toText(comChoice) === '가위') {
+                                console.log(`나 : ${toText2(rsp)} \n 컴퓨터 : ${toText(comChoice)} \n 결과 : 이겼습니다.`);
+                                totalGame++;
+                                win++;
+                            } else if (toText(comChoice) === '바위') {
+                                console.log(`나 : ${toText2(rsp)} \n 컴퓨터 : ${toText(comChoice)} \n 결과 : 비겼습니다.`);
+                                totalGame++;
+                            } else {
+                                console.log(`나 : ${toText2(rsp)} \n 컴퓨터 : ${toText(comChoice)} \n 결과 : 졌습니다.`);
+                                totalGame++;
+                            }
+                        } else {
+                            if (toText(comChoice) === '가위') {
+                                console.log(`나 : ${toText2(rsp)} \n 컴퓨터 : ${toText(comChoice)} \n 결과 : 졌습니다.`);
+                                totalGame++;
+                            } else if (toText(comChoice) === '바위') {
+                                console.log(`나 : ${toText2(rsp)} \n 컴퓨터 : ${toText(comChoice)} \n 결과 : 이겼습니다.`);
+                                totalGame++;
+                                win++;
+                            } else {
+                                console.log(`나 : ${toText2(rsp)} \n 컴퓨터 : ${toText(comChoice)} \n 결과 : 비겼습니다.`);
+                                totalGame++;
+                            }
+                        }
+                        
+                }
+                console.log(`${win}번 이겼으며, 총 ${totalGame}게임을 하였습니다. 당신의 승률은 ${((win/totalGame)*100).toPrecision(3)}%입니다.`)
+        });
+
+        let page = 1;
+        let firstRate = 45;
+        let secondRate = 44;
+        let thirdRate = 43;
+        let fourthRate = 42;
+        let fifthRate = 41;
+        let sixthRate = 40;
+        let result = 0;
+        
+        for (let i = 1; i < 6; i++) {
+            
+            
+            switch(page) {
+                case 1 :
+                    result = firstRate * secondRate;
+                    console.log(`첫 숫자가 당첨될 확률은 ${result}입니다.`)
+                    break;
+                case 2 :
+                    result *= thirdRate;                          
+                    break;
+                case 3 :
+                    result *= fourthRate;                  
+                    break;
+                case 4 :
+                    result *= fifthRate;
+                    break;
+                case 5 :
+                    result *= sixthRate;
+                    break;
+                default :
+                    break;
+            }
+            page++;
+        }
+        console.log(`${result}`);
+        
+
+
+        let t = 1;
+        for(let i = 0; i < 6; i++) {
+            t *= (45 - i);
+        }
+        console.log(`로또 1등이 당첨될 확률은 1 / ${t} 입니다`)
+    </script>
+</body>
+</html>

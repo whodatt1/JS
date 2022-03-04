@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>while 정복하기</title>
+</head>
+<body>
+    <h1>while 연습하기 : F12</h1>
+    <ol>
+        <li>1~ 100 이하의 홀수를 모두 출력한 후 그 수들의 합을 출력해보세요</li>
+        <li>임의의 숫자 2개 (a,b)를 받아 a의 b 제곱을 구해보세요</li>
+        num 1 : <input type="number" id="a"><br>
+        num 2 : <input type="number" id="b"><br>
+        <button type="button" id="btn">제곱구하기</button>
+        <li>정수 n을 입력받아 n의 약수를 모두 출력하고 총 몇개의 약수가 있는지 출력해보세요</li>
+        정수 n : <input type="number" id="n"><br>
+        <button type="button" id="btn2">약수 출력</button>
+        <li>
+            <ul>
+                <li>3자리의 양의 정수 1개를 입력받기 : s</li>
+                <li>크기가 다른 1자리의 양의 정수를 2개 입력받기 (x, y)</li>
+                <li>s안의 x와 y의 배의 갯수 구하기</li>
+            </ul>
+        </li>
+    </ol>
+    <script>
+        // 첫번째 문제
+        let i = 1
+        let sum = 0;
+        while (i <= 100) {
+            if (i <= 100){
+            console.log(i);
+            sum += i;
+            i = i + 2;
+            }
+        }
+        console.log(`1 ~ 100까지 홀수의 합은 : ${sum}`);
+
+        // 두번째 문제
+        document.getElementById('btn').addEventListener('click', function(){
+            let num1 = parseInt(document.getElementById('a').value);
+            let num2 = parseInt(document.getElementById('b').value);
+
+            let i = 0;
+            let j = 1;
+            
+            while (i < num2) {
+                j = j * num1;
+                i++;
+            }
+            console.log(`제곱 결과는 : ${j}`);
+        });
+
+        document.getElementById('btn2').addEventListener('click', function(){
+            let n1 = parseInt(document.getElementById('n').value);
+
+            i = 1;
+            j = 0;
+            total = 0;
+            while(i <= n1) {
+                j = n1 % i;
+                if (j == 0) {
+                    console.log(i)
+                    total++;
+                } 
+                i++;
+            }
+            console.log(`총 약수의 갯수 : ${total}`);
+        });
+
+        // let s = 356;
+        // let x = 3;
+        // let y = 8;
+        // let up1 = 1;
+        // let up2 = 1;
+        // let result = 1;
+        // let result2 = 2;
+        
+        // while (result < s) {
+        //     result = x * up1; 
+        //     up1++;
+        //     console.log(result);
+        // }
+        // console.log(`x의 약수의 갯수는 ${up1}개 입니다.`);
+        
+        
+        // while (result2 < s) {
+        //     result2 = y * up2;
+        //     up2++;
+        //     console.log(result2);
+        // }
+        // console.log(`y의 약수의 갯수는 ${up2}개 입니다.`);
+
+        // let s = 356;
+        // let x = 3;
+        // let y = 8;
+        // let flag = true;
+        // let up1 = 1;
+        // let up2 = 1;
+        // let result1 = 1;
+        // let result2 = 2;
+
+        // while(flag) {
+        //     if (result1 < s) {
+        //         result1 = x * up1;
+        //         up1++;
+        //         console.log(`x의 배수 = ${result1}`);
+        //         console.log(`x의 배수의 갯수는 ${up1}개 입니다.`);
+        //     } else {
+        //         if (result2 < s) {
+        //             result2 = y * up2;
+        //             up2++
+        //             console.log(`y의 배수 = ${result2}`);
+        //             console.log(`y의 배수의 갯수는 ${up2}개 입니다.`);
+        //         } else {
+                    
+        //             flag = false;
+        //         }
+        //     }
+        // }
+
+        let s = 100;
+        let x = 3;
+        let y = 4;
+        let m = 1;
+        let cnt_x = 0;
+        let cnt_y = 0;
+        let cnt_xy = 0;
+
+        while (s >= m) {
+            if(m % x == 0) {
+                cnt_x++;
+            }
+            if(m % y == 0) {
+                cnt_y++;
+            }
+            m++;
+        }
+        console.log(`x의 배수 개수 : ${cnt_x} 개`)
+        console.log(`y의 배수 개수 : ${cnt_y} 개`)
+        
+        let o = 1000000000;
+        let t = 16;
+        while(o > 0) {
+            if(o % t == 0) {
+                t = Math.floor(o / t);
+                break;
+                }
+                o--;
+            }
+            
+        console.log(t);
+    </script>
+</body>
+</html>
