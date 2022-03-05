@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열</title>
+</head>
+<body>
+    <h1>자바스크립트 배열(Array) : F12</h1>
+    <ul>
+        <li>자바스크립트 배열은 유동성이 좋은 배열이다</li>
+        <li>인덱스 번호는 0번 부터 시작</li>
+        <li>문자데이터와 달리 각 요소를 수정, 삭제 할 수 있다</li>
+        <li>standard for 문 이외에 for of라는 전용 for문을 활용할 수 있다</li>
+        <li>배열은 데이터타입이 object이지만 배열 전용 객체가 존재함</li>
+        <li>배열 또한 많은 내장 메서드를 갖고 있어 관리가 용이하게 설계되어 있음</li>
+    </ul>
+    <script>
+        let arr_1 = []; // 리터럴 배열 생성 연산자
+        let arr_2 = ['Kim', 'Lee', 'Park']; // 같은 데이터 타입을 저장이 기본
+
+        // 데이터의 모음이므로 복수형의 변수 이름을 사용할 것을 권장
+        let members = ['김아연', '김태형', '김호중', '주혁중', '손필규', '임정민'];
+
+
+        let arr_3 = [1, true, '김', undefined, {k : 'value',}]; //연관배열(유사배열) > 배열관련 메서드를 사용할 수 없음
+        console.log(arr_3);
+        let obj_1 = {k1: 'val1', k2: 'val2',};
+
+        let str_1 = 'Kim, Lee, Park'
+
+        let sums = [arr_1, arr_2, arr_3];
+
+        console.log(str_1.charAt(0));
+        console.log(str_1[0]);
+
+        console.log(arr_2[0]);
+        console.log(arr_1[0]);
+        console.log(sums[1][1])
+        console.log(sums[0] == arr_1); // undefined == undefined
+        console.log('------------------------------')
+        for (let i = 0; i < sums.length; i++) {
+            for (let j = 0; j < sums[i].length; j++) {
+                console.log(sums[i][j])
+            }
+
+        }
+        console.log(arr_3[arr_3.length-1]) // 이걸로 사용
+        console.log(arr_3[-1]); // string에서 사용하는 음수 개념과 다르다
+        console.log('------------------')
+        // 일반 반복문
+        for (let i = 0; i < arr_3.length; i++) {
+            console.log(arr_3[i])
+            
+        }
+
+
+        // 배열 전용 반복문
+        for (let elem of arr_3) {
+            console.log(elem)
+        }
+
+        // 오늘의 6시, 12시, 18시, 21시 기온을 검색해서 배열로 저장하세요 
+        // 그 온도를 미국 친구에게 알려주고 싶습니다
+        // 섭씨 온도를 화씨 온도로 변경하여 새로운 배열에 저장한 후 섭씨: 화씨 포맷으로 출력해주세요
+
+        let c = [19, 24, 24, 22];
+        let f = [];
+
+        for (let elem of c) {
+            console.log(f.length)
+            f[f.length] = (180 / 100) * elem + 32;
+        }
+        console.log(f)
+
+
+    </script>
+</body>
+</html>
