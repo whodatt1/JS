@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열과 객체 정렬 연습</title>
+</head>
+<body>
+    <h1>자바스크립트 배열과 객체 정렬 연습</h1>
+    <h3>Quiz 1.</h3>
+    <ul>
+        <li>랜덤으로 1~ 45까지의 6개의 숫자를 랜덤 생성 한 후 순차 정렬 (중복 허용)</li>
+        <li>6개의 숫자 중 중복 되는 숫자들을 검사 한 후 중복되는 숫자 중 뒤에 나온 숫자를 제거</li>
+        <li>다시 랜덤 숫자 한개를 만들어 기존의 배열에 저장되어 있는 숫자와 중복검사 후</li>
+        <li>중복되지 않으면 배열에 추가하고, 그 배열을 다시 순차정렬</li>
+    </ul>
+    <script>
+        let arr_1 = [];
+        for (let i = 0; i < 6; i++) {
+            let random = Math.floor((Math.random()*45)+1);
+            arr_1[i] = random;
+        }
+        arr_1.sort(function(a, b){return a  - b;});
+        console.log(arr_1);
+
+        for (let i = 0; i < arr_1.length; i++) {
+            if (arr_1[i] == arr_1[i+1]) {
+                arr_1.splice(i+1, 1);
+            }
+        }
+        console.log(arr_1);
+
+        let random2 = Math.floor((Math.random()*45)+1);
+
+        for (let i = 0; i < arr_1.length; i++) {
+            if (arr_1[i] !== random2) {
+                if (i === arr_1.length-1) {
+                    arr_1.push(random2);
+                }
+            }
+        }
+        arr_1.sort(function(a, b){return a - b;})
+        console.log(arr_1);
+    </script>
+</body>
+</html>

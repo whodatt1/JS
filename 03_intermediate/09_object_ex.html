@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 정렬 연습</title>
+</head>
+<body>
+    <h1>자바 스크립트 객체들 정렬 : F12</h1>
+    <ul>
+        <li>객체를 정렬할 때는 객체의 어떤 property를 기준으로 정렬할 것인가를 먼저 선택</li>
+        <li>문자와 숫자의 정렬 방법은 조금 차이가 있지만 원리는 흡사함</li>
+        <li>객체간 정렬도 프로퍼티의 값을 기준으로 정렬해야 하므로</li>
+        <li>정렬을 할 객체들은 기준이 되는 프로퍼티를 모두 갖고 있어야 함</li>
+    </ul>
+    <button type="button" id="name">name순으로 정렬</button>
+    <button type="button" id="age">age순으로 정렬</button>
+    <button type="button" id="favors">favors순으로 정렬</button>
+    <script>
+        // 객체들 정렬하기
+        const memberList = [
+            {name : 'A', age: 19, favors: '6'},
+            {name : 'G', age: 34, favors: '10'},
+            {name : 'Z', age: 48, favors: '7'},
+            {name : 'T', age: 26, favors: '3'},
+            {name : 'E', age: 30, favors: '9'}
+        ];
+        // name으로 정렬하기 버튼을 클릭하면 name순으로 객체를 정렬
+        // age로 정렬하기 버튼을 클릭하면 age순으로 객체를 정렬
+        // favors로 정렬하기 버튼을 클릭하면 favor순으로 객체를 정렬
+
+        document.getElementById('name').addEventListener('click', function() {
+            memberList.sort(function(a, b) {
+                let x = a.name.toLowerCase();
+                let y = b.name.toLowerCase();
+                return x < y ? -1 : x > y ? 1 : 0
+                // if (x < y) {
+                //     return -1;
+                // } else {
+                //     return 1;
+                // }
+                // return 0;
+            })
+            for (let elem of memberList) {
+                console.log(elem)
+            }
+            });
+        document.getElementById('age').addEventListener('click', function() {
+            memberList.sort(function(a, b) {
+                return a.age < b.age ? -1 : 1;
+            })
+            // for (let elem of memberList) {
+            //     console.log(elem)
+            // }
+            console.log('========================')
+            memberList.forEach(function (elem, index, arr) { // method overloading 파라미터 갯수에 따라 구분
+                console.log(index, elem, arr[index]);
+            });
+            console.log('========================')
+            memberList.forEach(function (elem, index) {
+                console.log(index, elem);
+            });
+            console.log('========================')
+            memberList.forEach(function(elem) {
+                console.log(elem);
+            });
+            console.log('========================')
+            function memberPrint(elem, index, arr) {
+                console.log(index, elem, arr[index]);
+            }
+            memberList.forEach(memberPrint) // 뒤에 () 붙이지 말것 즉시실행이므로 콜백함수사용할때 맞지 않음
+        });
+        document.getElementById('favors').addEventListener('click', function() {
+            memberList.sort(function(a, b) {
+                return parseInt(a.favors) < parseInt(b.favors) ? -1 : 1;
+            })
+
+            let new_arr = memberList.map(function (elem, index, arr) {
+                return `${index}: ${elem['name']},${elem['age']},${elem['favors']}`;
+            });
+            console.log(new_arr);
+            
+        });
+    </script>
+</body>
+</html>
