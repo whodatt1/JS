@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 이벤트</title>
+</head>
+<body>
+    <h1>자주 사용하는 마우스 이벤트</h1>
+    <ul>
+        <li>click : onclick, dbclick(더블클릭), contextmen(우클릭)</li>
+        <li>wheel : wheel, scroll, auxclick</li>
+        <li>drag and drop : drag, [dragstart, dragleave, dragover, dragenter, dragend], drop</li>
+        <li>focus and blur : 폼태그에 커서 이동, 커서 아웃</li>
+        <li>input, change : 입력된 상태, 입력된 값이 바뀌는 상태</li>
+        <li>mouseover(mouseout) : target element의 자식 요소에까지 영향을 미침</li>
+        <li>mouseenter(mouseleave) : target element에만 이벤트 적용</li>
+        <li>submit : 폼태그가 제출될 때</li>
+    </ul>
+    <span style="border: 3px solid red;" id="btn">버튼을 클릭하면?</span>
+    <h1 id="result"></h1>
+    입력 : <input type="text" id="ip">
+    <select name="" id="sel">
+        <option value="X">X</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+    </select>
+    <script>
+        // wheel button click
+        // e.button => 0: 좌측, 1: 휠, 2: 우측
+        document.getElementById('btn').addEventListener('auxclick', (e) => {
+            // MouseEvent.button = > 0: 좌측, 1: 휠, 2: 우측
+            console.log(e.button);
+            document.getElementById('result').innerText = "마우스 휠을 클릭함!";
+
+        });
+        document.getElementById('btn').addEventListener('click', (e) => {
+            console.log(e.button);
+            document.getElementById('result').innerText = "마우스 좌측을 클릭함!";
+        });
+        document.getElementById('btn').addEventListener('contextmenu', (e) => {
+            console.log(e.button);
+            document.getElementById('result').innerText = "마우스 우측을 클릭함!";
+        });
+        document.getElementById('ip').addEventListener('input', () => {
+            document.getElementById('result').innerText = "인풋태그에 입력 함!";
+        })
+        document.getElementById('sel').addEventListener('change', () => {
+            document.getElementById('result').innerText = "셀렉트태그 값을 변경 함!";
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/767e646a47.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="11_middle_Ex.css">
+</head>
+<body>
+    <div class="chatContainer">
+        <div class="chatHeader"><i class="fas fa-user-circle fa-3x"></i>구 남친</div>
+        <div class="chatBody" id="chat">
+            <ul id="chatLog">
+                <li>잘 지내?</li>
+                <li>자니?</li>
+            </ul>
+        </div>
+        <div>
+            <input type="text" placeholder="대화내용이 들어갑니다.">
+            <button type="button" id="btn">전송</button>
+        </div>
+    </div>
+    <script>
+        function myChatLog() {
+            const text = document.querySelector('input[type=text]').value;
+            let newLi = document.createElement('li');
+            newLi.innerText = text;
+            newLi.setAttribute('class', 'myChat');
+            document.querySelector('#chatLog').appendChild(newLi);
+            document.querySelector('input[type=text]').value = '';
+        }
+
+        document.querySelector('#btn').addEventListener('click', myChatLog)
+    </script>
+</body>
+</html>

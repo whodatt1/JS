@@ -1,0 +1,65 @@
+    .title1 {
+        text-align: center;
+        margin: 40px;    
+    }
+    .title2 {
+        font-size: 400%;
+        font-weight: bold;
+        border: 10px solid black;
+        box-sizing: border-box;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: -20px;
+    }
+    .body {
+        font-size: 1.5em;
+        text-align: center;
+        word-spacing: 30px;
+        padding: 50px;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    /* a:hover {
+        font-weight: bold;
+    } */
+    .pic-index {
+        margin: 0 auto;
+        background-image: url("../img/index.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        width: 65%;
+        height: 600px;
+    }
+    .pic-paris {
+        margin: 0 auto;
+        background-image: url("../img/paris.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        width: 65%;
+        height: 600px;
+    }
+    .pic-tokyo {
+        margin: 0 auto;
+        background-image: url("../img/tokyo.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        width: 65%;
+        height: 600px;
+    }
+    .pic-seoul {
+        margin: 0 auto;
+        background-image: url("../img/seoul.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        width: 65%;
+        height: 600px;
+    }
+    .curr_sel {
+        font-weight: bold;
+    }

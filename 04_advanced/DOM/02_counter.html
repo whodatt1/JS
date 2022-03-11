@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter 만들기</title>
+</head>
+<style>
+    button {
+        width : 100px;
+        height: 100px;
+        line-height: 100px;
+        font-size: 100px;
+    }
+</style>
+<body>
+    <h1>버튼을 활용한 카운터 만들기</h1>
+    <h3 id="result"></h3>
+    <button type="button" id="plus">+</button>
+    <button type="button" id="minus">-</button>
+    <script>
+        function getCurrNum() {
+            let currNum = parseInt(document.getElementById('result').innerText);
+            if (Number.isNaN(currNum)) {
+                currNum = 0;
+            }
+            return currNum;
+        }
+        document.getElementById('plus').addEventListener('click', function() {
+            let currNum = parseInt(getCurrNum());
+            currNum++;
+            document.getElementById('result').innerText = currNum;
+        });
+        document.getElementById('minus').addEventListener('click', function() {
+            let currNum = parseInt(getCurrNum());
+            currNum--;
+            document.getElementById('result').innerText = currNum;
+        });
+    </script>
+</body>
+</html>
