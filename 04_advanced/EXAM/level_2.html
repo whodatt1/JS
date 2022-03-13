@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Level 2 Test</title>
+</head>
+<body>
+    <h1>점수 / 등급 / 랭킹 출력하기</h1>
+    <ol>
+        <li>6개의 과목 점수와 인원 수 입력 받기</li>
+        <li>합계, 평균, 등급 연산하여 합계로 순위를 결정</li>
+        <li>등급은 (A[90이상], B[80이상], C[70이상], D[60이상], F[60미만])</li>
+        <li>가장 높은 합계점수를 받은 사람부터 출력</li>
+    </ol>
+    인원수 : <input type="number" id="pNumber">
+    <button type="button" id="pNumberBtn">입력</button>
+    <div id="result"></div>
+    <script>
+        document.getElementById('pNumberBtn').addEventListener('click', assignPeople);
+        function assignPeople(score_arr) {
+            let pn = Number(document.getElementById('pNumber').value);
+            let assign_arr = [];
+            for (let i = 0; i < pn; i++) {
+                let sub = new Set();
+                while (sub.size < 6){
+                let rNum = Math.floor(Math.random()*100)+1;
+                sub.add(rNum);
+                }
+                assign_arr[i] = [...sub];
+            }
+            console.log(assign_arr);
+            sum(assign_arr);
+        }
+        function sum(arr) {
+            let sum_arr = [];
+            for (let i = 0; i < arr.length; i++) {
+                let sum = 0;
+                for (let j = 0; j < 6; j++) {
+                    sum += arr[i][j];
+                }
+                let avg = sum / 6;
+                sum_arr.push(sum);
+            }
+            console.log(sum_arr)
+            avg(sum_arr);
+        }
+        function avg(sum) {
+            let sum_arr = sum;
+            let avg_arr = [];
+            for (let elem of sum_arr) {
+                avg_arr[avg_arr.length] = (Number(elem)/6).toPrecision(3);
+            }
+            grade(sum_arr, avg_arr);
+        }
+        function grade(sum, avg) {
+            let sum_arr = sum;
+            let avg_arr = avg;
+            let grade_arr = [];
+            for (let i = 0; i < avg_arr.length; i++) {
+                if (avg_arr[i] >= 90) {
+                    grade_arr[i] = 'A';
+                } else if (avg_arr[i] >= 80) {
+                    grade_arr[i] = 'B';
+                } else if (avg_arr[i] >= 70) {
+                    grade_arr[i] = 'C';
+                } else if (avg_arr[i] >= 60) {
+                    grade_arr[i] = 'D';
+                } else {
+                    grade_arr[i] = 'F';
+                }
+            }
+            toHtml(sum_arr, avg_arr, grade_arr)
+        }
+        function toHtml(sum, avg, grade) {
+            let endArr = [];
+            for (let i = 0; i < sum.length; i++) {
+                let aryToObj = {
+                    studentNum: `${i+1}`,
+                    totalscore : sum[i],
+                    average : avg[i],
+                    grade : grade[i]
+                };
+                endArr[i] = aryToObj;
+            }
+            endArr.sort(function(a, b){
+                return b.totalscore - a.totalscore;
+            })
+            console.log(endArr)
+            let divAddr = document.getElementById('result');
+            for(let i = 0; i < endArr.length; i++) {
+                let newDiv = document.createElement('div');
+                newDiv.innerHTML = `${(i+1)}등 : ${endArr[i].studentNum}번 학생의 총점은 ${endArr[i].totalscore}점 평균점수는 ${endArr[i].average} 등급은 ${endArr[i].grade} 입니다`
+                divAddr.appendChild(newDiv);
+            }      
+        }
+    </script>
+</body>
+</html>

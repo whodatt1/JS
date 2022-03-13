@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>호텔 관리 프로그램</h1>
+    <ol>
+        <li>n개의 층과 1개 층마다 m개의 호실 있는 호텔을 초기화</li>
+        <li>메뉴 > 1:객실현황전체보기 / 2:입실 / 3:퇴실 / 4:개별룸 정보 보기 / etc:종료</li>
+        <li>입실정보 => 입실할 방 번호, 이름, 입실 날짜와 시간</li>
+        <li>객실현황전체보기 => 입실가능 or 사용중 출력</li>
+        <li>퇴실 => 퇴실할 방 번호</li>
+    </ol>
+    <hr>
+    <div id="initArea">
+        <button type="button" id="initHotel">건설할 호텔 정보 입력 하기</button>
+    </div>
+    <div id="menuArea" style="display: none;">
+        <h1>호텔 관리 메뉴</h1>
+        <ol>
+            <li>객실 현황 전체 보기 <button type="button" id="getList">보기</button></li>
+            <li>입실 하기 <button type="button" id="checkIn">입실</button></li>
+            <li>퇴실 하기 <button type="button" id="checkOut">퇴실</button></li>
+            <li>개별룸 정보 보기 <button type="button" id="getDetail">보기</button></li>
+        </ol>
+    </div>
+    <hr>
+    <div id="printArea"></div>
+    <hr>
+    <div id="checkArea"></div>
+    <script>
+        class Room {
+            constructor(rno=0, user='', avail=true, date='') {
+                this.rno = rno;
+                this.user = user;
+                this.avail = avail;
+                this.date = date;
+            }
+            returnRno() {
+                return this.rno;
+            }
+            returnAvail() {
+                return this.avail;
+            }
+            checkIn(user) {
+                this.user = user;
+                this.avail = false;
+                this.date = new Date();
+            }
+            checkOut() {
+                this.avail = true;
+                this.user = '';
+                this.date = new Date();
+            }
+            roomDetail() {
+                return [this.rno, this.user, this.avail, this.date];
+            }
+        }
+        const hotelMake = (function() {
+            let rooms = [];
+            return function (f=0, r=0) {
+                if (f > 0 && r > 0) {
+                    for (let i = 0; i < f; i++) {
+                        rooms.push([]);
+                        for (let j = 0; j < r; j++) {
+                            rooms[i].push(new Room(`${i+1}${j < 9 ? '0'+ (j+1) : j+1}`))
+                        }
+                    }
+                }
+                return rooms;
+            }
+        })();
+        function getList() {
+            const hotel = hotelMake()
+            console.log(hotel)
+            let str = '<table border="1">'
+            hotel.forEach(floor => {
+                str += '<tr>'
+                floor.forEach(rooms => {
+                    let rno = rooms.returnRno();
+                    let avail = rooms.returnAvail();
+                    str += `<td>${rno}<br>${avail ? '입실가능' : '사용중'}</td>`
+                })
+                str += '</tr>'
+            })
+            str += '</table>'
+            document.getElementById('printArea').innerHTML = str;
+        }
+        document.getElementById('getDetail').addEventListener('click', ()=> {
+            document.getElementById('checkArea').innerHTML = '';
+            let str ='';
+            str += '방 번호 입력 : <input type="number" id="checkInRoomNo"><br>'
+            str += '<button type="button" id="detail">확인</button>'
+            document.getElementById('checkArea').innerHTML = str;
+        })
+        document.getElementById('checkIn').addEventListener('click', ()=>{
+            document.getElementById('checkArea').innerHTML = '';
+            let str = '';
+            str += '입실할 방 번호 : <input type="number" id="checkInRoomNo"><br>'
+            str += '입실자 성명 : <input type="text" id="checkInName"><br>'
+            str += '<button type="button" id="checkInBtn">확인</button>'
+            document.getElementById('checkArea').innerHTML = str;
+        });
+        document.getElementById('getList').addEventListener('click', getList)
+        function hotelInfo() {
+            document.getElementById('initArea').innerHTML = '';
+            let str ='';
+            str += '호텔의 층수 : <input type="number" id="floor" value="5"> '
+            str += '호텔의 방수 : <input type="number" id="rooms" value="10">'
+            str += ' <button type="button" id="makeHotel">만들기</button>'
+            document.getElementById('initArea').innerHTML = str;
+        }
+        document.getElementById('initHotel').addEventListener('click', hotelInfo)
+
+        document.addEventListener('click', (e) => {
+            if (e.target.id == 'makeHotel') {
+                let f = document.getElementById('floor').value;
+                let r = document.getElementById('rooms').value;
+                hotelMake(f, r);
+                document.getElementById('menuArea').style.display = 'block';
+                document.getElementById('initArea').style.display = 'none';
+            }
+            if (e.target.id == 'checkInBtn') {
+                let [floor, roomNo, hotel] = getCheckInfo();
+                let user = document.getElementById('checkInName').value;
+
+                if (hotel[floor][roomNo].returnAvail()) {
+                    hotel[floor][roomNo].checkIn(user);
+                } else {
+                    alert('다른방을 이용해 주세요');
+                }
+                document.getElementById('getList').click()
+            }
+            if (e.target.id == 'detail') {
+                let [floor, roomNo, hotel] = getCheckInfo()
+                let str = "<ul>"
+                hotel[floor][roomNo].roomDetail().forEach(elem => {
+                    str += `<li>${elem}</li>`
+                })
+                str += '</ul>'
+                document.getElementById('checkArea').innerHTML = str;
+            }   
+        })
+        function getCheckInfo() {
+            let a = document.getElementById('checkInRoomNo').value;
+            let floor = parseInt(a.length > 3 ? a.substr(0, 2) : a[0])-1
+            let roomNo = parseInt(a.length > 3 ? a.substring(2) : a.substring(1))-1;
+            let hotel = hotelMake();
+            return [floor, roomNo, hotel]
+        }
+    </script>
+</body>
+</html>

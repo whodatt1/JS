@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Level 1 Test</title>
+</head>
+<body>
+    <h1>인원 정보 출력하기</h1>
+    <ol>
+        <li>인원수(양의 정수) 입력받기</li>
+        <li>인원수 만큼 이름과 나이 입력 받기</li>
+        <li>입력받은 정보를 출력하기(console.log() X)</li>
+    </ol>
+    인원수 입력 : <input type="number"><button type="button" id="nopBtn">확인</button>
+    <ul id="input"></ul>
+    <div id="newBtn"></div>
+    <div id="toHtml"></div>
+    <script>
+        let inUl;
+        function makeInput() {
+            let nopVal = Number(document.querySelector('input[type=number]').value);
+            inUl = document.querySelector('#input');
+            let newBtn = document.querySelector('#newBtn');
+            for (let i = 0; i < nopVal; i++) {             
+                let li = document.createElement('li');
+                let inputList = `이름 : <input type="text" id="name${i}"> 나이 : <input type="number" id="age${i}">`
+                li.innerHTML = inputList;
+                inUl.appendChild(li);
+                document.querySelector('input[type=number]').value = '';
+            }
+            let button = document.createElement('button');
+            button.innerText = '제출'
+            button.setAttribute('id', 'submitBtn');
+            newBtn.appendChild(button);
+            document.getElementById('submitBtn').addEventListener('click', screenHtml)
+        }
+        
+        function screenHtml() {
+            for (let i = 0; i < inUl.childElementCount; i++) {
+                let inUl2 = document.querySelector('#toHtml');
+                let newLi = document.createElement('div')
+                let name = document.querySelector(`#name${i}`).value;
+                let age = document.querySelector(`#age${i}`).value;
+                newLi.innerHTML = '이름 :' + name + ' 나이 :' + age;
+                inUl.appendChild(newLi);
+                console.log(age);
+            }
+        }
+
+
+        document.getElementById('nopBtn').addEventListener('click', makeInput)
+        
+    </script>
+</body>
+</html>
