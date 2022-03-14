@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="container">   
+    </div>
+    <div class="container">
+        <button id="start">숫자 생성</button>
+        <button id="oddBtn">홀수 선택</button>
+        <button id="evenBtn">짝수 선택</button>
+    </div>
+    <script>
+        
+        document.getElementById('start').addEventListener('click', makeRandomNumber);
+        document.getElementById('oddBtn').addEventListener('click', () => {
+            let totalNum = document.querySelectorAll('.box')
+            for (let i = 0; i < totalNum.length; i++) {
+                if(parseInt(totalNum[i].innerHTML)%2 > 0) {
+                    totalNum[i].setAttribute('class', 'box color');
+                } else {
+                    totalNum[i].setAttribute('class', 'box');
+                }
+            }
+        })
+        document.getElementById('evenBtn').addEventListener('click', () => {
+            let totalNum = document.querySelectorAll('.box')
+            for (let i = 0; i < totalNum.length; i++) {
+                if(parseInt(totalNum[i].innerHTML)%2 == 0) {
+                    totalNum[i].setAttribute('class', 'box color');
+                } else {
+                    totalNum[i].setAttribute('class', 'box');
+                }
+            }
+        })
+        function makeRandomNumber() {
+            let ranNum = new Set()
+            while(ranNum.size < 24) {
+                let rnum = Math.floor(Math.random()*100) +1;
+                ranNum.add(rnum);
+            }
+            let Array = [...ranNum]
+            console.log(Array) 
+            for (let i = 0; i < Array.length; i++) {
+                let box = document.createElement('div');
+                let where = document.getElementById('container');
+                box.setAttribute('class', 'box');
+                where.prepend(box);
+            }
+            for (let i = 0; i < Array.length; i++) {
+                document.querySelector('#container').children[i].innerHTML = Array[i]
+            }
+        }
+    </script>
+</body>
+</html>
