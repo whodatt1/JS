@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자야구게임</title>
+</head>
+<body>
+    <h1>숫자 야구 규칙</h1>
+    <ol>
+        <li>1~9까지의 숫자 3개를 중복되지 않게 랜덤으로 정한다 [6, 2, 9]</li>
+        <li>상대방은 이 3개의 숫자를 정확히 맞추는 게임</li>
+        <li>스트라이크(S) : 숫자 값과 자리수가 일치 할 때 [6, 1, 4] => 1S</li>
+        <li>볼(B) : 숫자 값은 맞췄지만 자릿수가 일치하지 않을 때 [9, 1, 6] => 2B</li>
+        <li>아웃(OUT) : 숫자 값이 모두 일치하지 않을때 [1, 3, 7] => OUT</li>
+    </ol>
+    <ul>
+        <li>형식은 자유</li>
+        <li>게임 진행 상황은 기록되어야 할 것</li>
+        <li>(optional) 게임 진행 시간 기록</li>
+        <li>(optional) 시도 횟수 기록</li>
+        <li>(optional) 게임 완료 시간, 게임 소요 시간 기록과 시도 횟수 기록을 객체로 저장하여 그 객체를 배열로 저장</li>
+        <li>(optional) 배열로 저장된 기록을 정렬할 수 있는 기능</li>
+    </ul>
+    첫번째 숫자 : <input type="number" id="first"><br>
+    두번째 숫자 : <input type="number" id="second"><br>
+    세번째 숫자 : <input type="number" id="third"><br>
+    <button type="button" id="result">결과 확인!</button>
+    <div id="div"></div>
+    <script>
+
+        let start = Date.now();
+        let ranarr = new Set()
+        while(ranarr.size < 3) {
+            let ran = Math.floor(Math.random()*9)+1
+            ranarr.add(ran);
+        }
+        let newarr = [...ranarr]
+        let gameTime = 0;
+
+        document.getElementById('result').addEventListener('click', () => {
+            
+            let first = document.querySelector('#first').value;
+            let second = document.querySelector('#second').value;
+            let third = document.querySelector('#third').value;
+            let answer = [first, second, third];
+            let s = 0;
+            let b = 0;
+            for (let i = 0; i < newarr.length; i++) {
+                if (newarr[i] == answer[i]) {
+                    s++;
+                } else if (newarr.indexOf(Number(answer[i])) > -1) {
+                    b++;
+                }
+            }
+            gameTime++;
+            let end = Date.now();
+            let wholeTime = end - start;
+            let log = document.createElement('div');
+            log.innerText = `${answer} => ${s}스트라이크, ${b}볼, 총 시도 횟수${gameTime} 진행시간 ${wholeTime}`
+            document.querySelector('#div').append(log);
+
+            class Obj {
+                constructor(endTime, wholeTime, gameTime) {
+                    this.endTime = endTime;
+                    this.wholeTime = wholeTime;
+                    this.gameTime = gameTime;
+                }
+            }
+            let myObj = new Obj(end, wholeTime, gameTime);
+            console.log(myObj);
+            let objToArr = Object.entries(myObj);
+            for (let elem of objToArr) {
+                console.log(elem);
+            }
+        })
+
+
+    </script>
+</body>
+</html>
